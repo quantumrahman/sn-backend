@@ -1,0 +1,21 @@
+{
+  "name": "sportnest-backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Rakibul Rahman",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.5.0",
+    "globals": "^17.7.0"
+  }
+}

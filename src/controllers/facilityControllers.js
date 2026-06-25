@@ -31,7 +31,7 @@ export const readController = async (req, res, next) => {
     }
 };
 
-export const updateContoller = async (req, res, next) => {
+export const updateController = async (req, res, next) => {
     try {
         return res.status(200).json({
             success: true,

@@ -1,33 +1,20 @@
 import { Router } from 'express';
 
+import {
+    createController,
+    readsController,
+    readController,
+    updateController,
+} from '../controllers/bookingControllers.js';
+
 const router = Router();
 
-router.route('/bookings').post((req, res) =>
-    res.status(201).json({
-        success: true,
-        message: 'POST -> Create bookings',
-    })
-);
+router.route('/bookings').post(createController);
 
-router.route('/bookings').get((req, res) =>
-    res.status(200).json({
-        success: true,
-        message: 'GET -> Reads bookings',
-    })
-);
+router.route('/bookings').get(readsController);
 
-router.route('/bookings/:id').get((req, res) =>
-    res.status(200).json({
-        success: true,
-        message: 'GET -> Read booking',
-    })
-);
+router.route('/bookings/:id').get(readController);
 
-router.route('/bookings/:id').patch((req, res) =>
-    res.status(200).json({
-        success: true,
-        message: 'PATCH -> Update bookings',
-    })
-);
+router.route('/bookings/:id').patch(updateController);
 
 export default router;

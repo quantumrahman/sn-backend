@@ -11,12 +11,12 @@ const facilitySchema = new mongoose.Schema(
             type: String,
             required: [true, 'Facility type is required'],
             enum: [
-                'football_turf',
-                'badminton_court',
-                'swimming_lane',
-                'tennis_court',
-                'basketball_court',
-                'others',
+                'Football Turf',
+                'Cricket Turf',
+                'Badminton Court',
+                'Tennis Court',
+                'Basketball Court',
+                'Swimming Pool',
             ],
         },
         image: {

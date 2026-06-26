@@ -40,7 +40,29 @@ export const readService = async (id) => {
 };
 
 export const updateService = async (id, payload) => {
-    console.log('update service');
+    const available_slots = payload.available_slots
+        .split(',')
+        .map((slot) => slot.trim())
+        .filter(Boolean);
+
+    const facility = await Facility.findByIdAndUpdate(
+        { _id: id },
+        {
+            $set: {
+                ...payload,
+                available_slots: available_slots,
+            },
+        },
+        {
+            returnDocument: 'after',
+        }
+    );
+
+    if (!facility) {
+        throw new AppError(404, 'Facility not found');
+    }
+
+    return facility;
 };
 
 export const deleteService = async (id) => {

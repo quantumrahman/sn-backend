@@ -1,9 +1,9 @@
 const validateMiddleware = (schema) => {
     return (req, res, next) => {
         try {
-            const result = schema.safeParse(req.body);
+            const result = schema.parse(req.body);
 
-            req.body = result.data;
+            req.body = result;
 
             return next();
         } catch (error) {

@@ -1,7 +1,18 @@
 /* eslint-disable no-unused-vars */
+import Booking from '../models/bookingModel.js';
+import AppError from '../utils/appError.js';
 
 export const createService = async (payload) => {
-    console.log('create service');
+    const bookingExists = await Booking.findOne({
+        facility_name: payload.facility_name,
+        user_email: payload.user_email,
+    });
+
+    if (bookingExists) {
+        throw new AppError(400, 'You already booked this facility');
+    }
+
+    return await Booking.create(payload);
 };
 
 export const readsService = async () => {

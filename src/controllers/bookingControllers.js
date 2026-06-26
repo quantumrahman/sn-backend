@@ -44,9 +44,12 @@ export const readController = async (req, res, next) => {
 
 export const updateController = async (req, res, next) => {
     try {
+        const booking = await BookingServices.updateService(req.params.id);
+
         return res.status(200).json({
             success: true,
             message: 'Booking update successfully',
+            data: booking || {},
         });
     } catch (error) {
         return next(error);

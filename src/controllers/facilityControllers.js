@@ -16,9 +16,12 @@ export const createController = async (req, res, next) => {
 
 export const readsController = async (req, res, next) => {
     try {
+        const facilities = await FacilityServices.readsService();
+
         return res.status(200).json({
             success: true,
             message: 'Facility reads successfully',
+            data: facilities || [],
         });
     } catch (error) {
         return next(error);

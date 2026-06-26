@@ -20,7 +20,15 @@ export const readsService = async () => {
 };
 
 export const readService = async (id) => {
-    console.log('read service');
+    const booking = await Booking.findById({
+        _id: id,
+    });
+
+    if (!booking) {
+        throw new AppError(404, 'Booking not found');
+    }
+
+    return booking;
 };
 
 export const updateService = async (id, payload) => {

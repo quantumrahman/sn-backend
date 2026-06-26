@@ -22,7 +22,9 @@ export const readsService = async () => {
 export const readService = async (id) => {
     const booking = await Booking.findById({
         _id: id,
-    });
+    })
+        .populate('facility_id')
+        .lean();
 
     if (!booking) {
         throw new AppError(404, 'Booking not found');
@@ -32,5 +34,23 @@ export const readService = async (id) => {
 };
 
 export const updateService = async (id, payload) => {
-    console.log('update service');
+    const booking = await Booking.findByIdAndUpdate(
+        {
+            _id: id,
+        },
+        {
+            $set: {
+                status: 'cancelled',
+            },
+        },
+        {
+            returnDocument: 'after',
+        }
+    ).lean();
+
+    if (!booking) {
+        throw new AppError(404, 'Booking not found');
+    }
+
+    return booking;
 };

@@ -16,9 +16,12 @@ export const createController = async (req, res, next) => {
 
 export const readsController = async (req, res, next) => {
     try {
+        const bookings = await BookingServices.readsService();
+
         return res.status(200).json({
             success: true,
             message: 'Booking reads successfully',
+            data: bookings || {},
         });
     } catch (error) {
         return next(error);

@@ -9,7 +9,7 @@ const bookingSchema = new mongoose.Schema(
         },
         facility_name: {
             type: String,
-            required: true,
+            required: [true, 'Facility is required'],
         },
         user_email: {
             type: String,

@@ -7,9 +7,12 @@ import {
     updateController,
 } from '../controllers/bookingControllers.js';
 
+import validateMiddleware from '../middlewares/validateMiddleware.js';
+import { bookingValidateSchema } from '../validators/bookingValidator.js';
+
 const router = Router();
 
-router.route('/bookings').post(createController);
+router.route('/bookings').post(validateMiddleware(bookingValidateSchema), createController);
 
 router.route('/bookings').get(readsController);
 

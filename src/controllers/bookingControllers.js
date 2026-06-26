@@ -1,8 +1,13 @@
+import * as BookingServices from '../services/bookingServices.js';
+
 export const createController = async (req, res, next) => {
     try {
+        const booking = await BookingServices.createService(req.body);
+
         return res.status(201).json({
             success: true,
             message: 'Booking create successfully',
+            data: booking || {},
         });
     } catch (error) {
         return next(error);

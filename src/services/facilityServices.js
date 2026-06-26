@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import Facility from '../models/facilityModel.js';
 import AppError from '../utils/appError.js';
 
@@ -66,5 +64,13 @@ export const updateService = async (id, payload) => {
 };
 
 export const deleteService = async (id) => {
-    console.log('delete service');
+    const facility = await Facility.findByIdAndDelete({
+        _id: id,
+    });
+
+    if (!facility) {
+        throw new AppError(404, 'Facility not found');
+    }
+
+    return facility;
 };

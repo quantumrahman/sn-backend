@@ -16,7 +16,7 @@ export const createService = async (payload) => {
 };
 
 export const readsService = async () => {
-    console.log('reads service');
+    return await Booking.find().populate('facility_id').lean();
 };
 
 export const readService = async (id) => {

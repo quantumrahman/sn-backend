@@ -44,9 +44,12 @@ export const readController = async (req, res, next) => {
 
 export const updateController = async (req, res, next) => {
     try {
+        const facility = await FacilityServices.updateService(req.params.id, req.body);
+
         return res.status(200).json({
             success: true,
             message: 'Facility update successfully',
+            data: facility || {},
         });
     } catch (error) {
         return next(error);
